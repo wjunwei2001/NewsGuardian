@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NewsGuardian Fake News Detector</title>
+    </head>
+    <body>
+        <p style="text-align: center;">Verify your information here</p>
+        <form action="/" method="POST">
+            <input type="text" id="userinput" name="userinput" placeholder="Enter your text here...">
+            <br>
+            <button type="submit" name="predict">Predict</button>
+        </form>
+        {% if result %}
+        <p style="text-align: center;"><strong>Prediction: {{result}}</strong></p>
+        {% endif %}
+    </body>
+</html>
