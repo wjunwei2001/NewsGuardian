@@ -4,12 +4,13 @@ import re
 import pickle 
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+from keras.models import load_model
 
 app = Flask(__name__)
 ps = PorterStemmer()
 
 # loading of the saved model and vectorizer using pickle
-model = pickle.load(open('final_model.pkl', 'rb'))
+model = load_model('nn_model.keras')
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
 # building the functionalities 
