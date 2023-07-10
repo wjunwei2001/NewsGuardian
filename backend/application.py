@@ -25,7 +25,7 @@ def predict(text) :
               stopwords.words('english')]
     review = ''.join(review)
     review_vector = vectorizer.transform([review]).toarray()
-    prediction = 'Fake News' if model.predict(review_vector) == 0 else 'Real News'
+    prediction = 'Fake News' if model.predict(review_vector)[0][0] <= 0.6 else 'Real News'
     return prediction
 
 @app.route('/', methods=['POST'])
@@ -33,6 +33,7 @@ def webapp() :
     text = request.form['text']
     prediction = predict(text)
     return render_template('base.html', text = text, result = prediction)
+
 
 if __name__ == "__main__" :
     app.run()
