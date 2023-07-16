@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import nltk
 import re
 import pickle 
@@ -7,6 +8,7 @@ from nltk.stem.porter import PorterStemmer
 from keras.models import load_model
 
 app = Flask(__name__)
+CORS(app)
 ps = PorterStemmer()
 
 # loading of the saved model and vectorizer using pickle
@@ -18,7 +20,7 @@ vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 def homePage() :
     return render_template('base.html')
 
-def predict(text) : 
+def get_prediction(text) : 
     review = re.sub('^[a-zA-Z]', ' ', text)
     review = review.lower()
     review = review.split()
@@ -30,11 +32,22 @@ def predict(text) :
     return prediction
 
 @app.route('/', methods=['POST'])
-def webapp() :
+def webapp():
     text = request.form['text']
-    prediction = predict(text)
-    return render_template('base.html', text = text, result = prediction)
+    prediction = get_prediction(text)
+    return render_template('index.html', text=text, result=prediction)
 
+@app.route('/predict/', methods=['GET','POST'])
+def predict() :
+    data = request.get_json()
+    text = data['text']
+    prediction = get_prediction(text)
+    return jsonify({'result': prediction})
+
+# import time
+# @app.route('/time')
+# def get_current_time():
+#     return {'time': time.time()}
 
 if __name__ == "__main__" :
     app.run()
