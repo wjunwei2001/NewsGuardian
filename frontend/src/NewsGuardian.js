@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './NewsGuardian.css';
 
 function NewsGuardian() {
     const [text, setText] = useState('')
@@ -29,12 +30,13 @@ function NewsGuardian() {
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <h1 style={{ textAlign: 'center' }} >NewsGuardian Fake News Detector</h1>
-            <p style={{ textAlign: 'center' }}>Verify your information here</p>
+            <p className='header'>NewsGuardian</p>
+            <p style={{ textAlign: 'center' }}>Verify article authenticity <strong>instantly</strong> with our fake news detector. <br></br>Paste the text into the textbox below and click <strong>"Predict"</strong> for accurate results.</p>
             <form onSubmit={handleSubmit}>
-                <textarea type="text" id="userinput" name="text" placeholder="Enter your text here..." value={text} onChange={handleInputChange} cols={60} />
+                <textarea className='textbox' type="text" id="userinput" name="text" placeholder="Enter your text here..." value={text} onChange={handleInputChange} cols={60} />
                 <br />
-                <button type="submit" name="predict">Predict</button>
+                <br />
+                <button className='submitbutton' type="submit" name="predict">Predict</button>
             </form>
             {result && (
                 <p style={{ textAlign: 'center' }}>

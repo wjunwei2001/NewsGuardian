@@ -1,0 +1,47 @@
+.header {
+    text-align: center;
+    letter-spacing: 0.3rem;
+    font-size: 3rem;
+    font-weight: 400;
+    text-shadow: #ffffff 0 0 4px;
+    margin: 4rem 0 5rem 0;
+}
+
+.textbox {
+    border-radius: 1rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    font-family: 'Poppins', sans-serif;
+    margin: 1rem 0 1rem 0;
+}
+
+.submitbutton {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border-width: 0;
+    background-color: #2760cc;
+    color: #ffffff;
+    width: 5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 250ms;
+    margin-bottom: 2rem;
+}
+
+.submitbutton:hover {
+    background-color: #1951b9;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transform: translateY(-2px);
+}
+
+.submitbutton:active {
+    background-color: #0e45aa;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    transform: translateY(2px);
+}
+
