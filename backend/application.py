@@ -35,7 +35,7 @@ def get_prediction(text) :
 def webapp():
     text = request.form['text']
     prediction = get_prediction(text)
-    return render_template('index.html', text=text, result=prediction)
+    return render_template('base.html', text=text, result=prediction)
 
 @app.route('/predict/', methods=['GET','POST'])
 def predict() :
