@@ -1,5 +1,5 @@
 # NewsGuardian
-~ Description of project ~
+NewsGuardian is a website application that harnesses the power of Natural Language Processing (NLP) to accurately predict the authenticity of news articles. With the aim of combatting the spread of fake news, this project utilized advanced machine learning techniques to provide users with reliable information and promote media literacy.
 
 # Data Processing
 The dataset used for training the models was obtained from Kaggle's Fake and Real News Dataset (https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset). The dataset consists of texts which centred around political news in the United States.
@@ -43,6 +43,7 @@ Accuracy: 0.995
 NewsGuardian is developed as a web-based solution using the following technologies:
 
 Backend: Flask
+
 The neural network model is saved using the keras library and then deployed in the flask app. We then created an API in flask such that we could call it from our frontend, integrating the flask and react app together.
 
 Frontend: React
