@@ -14,7 +14,13 @@
     padding-left: 0.6rem;
     padding-right: 0.6rem;
     font-family: 'Poppins', sans-serif;
+    color: #ffffff;
     margin: 1rem 0 1rem 0;
+    background-color: #ffffff1c;
+}
+
+::placeholder {
+    color: #ffffff;
 }
 
 .submitbutton {

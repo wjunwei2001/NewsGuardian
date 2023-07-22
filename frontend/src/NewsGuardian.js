@@ -33,7 +33,7 @@ function NewsGuardian() {
             <p className='header'>NewsGuardian</p>
             <p style={{ textAlign: 'center' }}>Verify article authenticity <strong>instantly</strong> with our fake news detector. <br></br>Paste the text into the textbox below and click <strong>"Predict"</strong> for accurate results.</p>
             <form onSubmit={handleSubmit}>
-                <textarea className='textbox' type="text" id="userinput" name="text" placeholder="Enter your text here..." value={text} onChange={handleInputChange} cols={60} />
+                <textarea className='textbox' type="text" id="userinput" name="text" placeholder="Enter your text here..." value={text} onChange={handleInputChange} cols={60} required/>
                 <br />
                 <br />
                 <button className='submitbutton' type="submit" name="predict">Predict</button>
