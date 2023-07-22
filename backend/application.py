@@ -3,6 +3,8 @@ from flask_cors import CORS
 import nltk
 import re
 import pickle 
+custom_nltk_data_path = "backend/"
+nltk.data.path.append(custom_nltk_data_path)
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from keras.models import load_model
