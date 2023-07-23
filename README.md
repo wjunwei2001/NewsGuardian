@@ -40,13 +40,13 @@ Accuracy: 0.989
 
 Accuracy: 0.995
 # Development of Web-based application
-NewsGuardian is developed as a web-based solution using the following technologies:
+The development of NewsGuardian involves the integration of the following technologies:
 
-Backend: Flask
+## Backend
+Flask: We have chosen Flask, a lightweight and flexible Python web framework, to build the backend of the application. Flask allows seamless integration with our neural network model, which is built using the Keras library. The Flask backend exposes an API that the frontend can interact with to perform fake news detection.
 
-The neural network model is saved using the keras library and then deployed in the flask app. We then created an API in flask such that we could call it from our frontend, integrating the flask and react app together.
-
-Frontend: React
+## Frontend
+React: For the frontend, we opted for React, a popular and efficient JavaScript library, to create an interactive and user-friendly interface. React's component-based structure ensures the smooth integration of different elements of the web app, providing a seamless user experience.
 
 
 # Deployment of app
