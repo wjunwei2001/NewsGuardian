@@ -33,12 +33,13 @@ def get_prediction(text) :
     review = [ps.stem(word) for word in review]
     review = ''.join(review)
     review_vector = vectorizer.transform([review]).toarray()
-    if model.predict(review_vector)[0][0] > 0.7:
-        prediction = "Real News"
-    elif 0.4 < model.predict(review_vector)[0][0] <= 0.7:
-        prediction = "Suspicious piece of news. Please check the credibility of the source"
-    else:
-        prediction = "Fake News"
+    # if model.predict(review_vector)[0][0] > 0.7:
+    #     prediction = "Real News"
+    # elif 0.4 < model.predict(review_vector)[0][0] <= 0.7:
+    #     prediction = "Suspicious piece of news. Please check the credibility of the source"
+    # else:
+    #     prediction = "Fake News"
+    prediction = "Testing"
     return prediction
 
 @app.route('/', methods=['POST'])
