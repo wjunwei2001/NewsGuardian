@@ -3,8 +3,12 @@ from flask_cors import CORS
 import nltk
 import re
 import pickle 
-custom_nltk_data_path = "backend/"
-nltk.data.path.append(custom_nltk_data_path)
+# custom_nltk_data_path = "backend/"
+# nltk.data.path.append(custom_nltk_data_path)
+import spacy
+sp = spacy.load('en_core_web_sm')
+spacy_stopwords = sp.Defaults.stop_words
+
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from keras.models import load_model
@@ -27,7 +31,7 @@ def get_prediction(text) :
     review = review.lower()
     review = review.split()
     review = [ps.stem(word) for word in review if not word in 
-              stopwords.words('english')]
+              spacy_stopwords]
     review = ''.join(review)
     review_vector = vectorizer.transform([review]).toarray()
     if model.predict(review_vector)[0][0] > 0.7:
