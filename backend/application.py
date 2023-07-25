@@ -11,14 +11,19 @@ spacy_stopwords = sp.Defaults.stop_words
 
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-from keras.models import load_model
+from keras.models import load_model, model_from_json
 
 app = Flask(__name__)
 CORS(app)
 ps = PorterStemmer()
 
 # loading of the saved model and vectorizer using pickle
-model = load_model('nn_model.keras')
+# model = load_model('nn_model.keras')
+with open('model_json', 'r') as json_file:
+    loaded_model_json = json_file.read()
+loaded_model = model_from_json(loaded_model_json)
+loaded_model.load_weights("model.h5")
+
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
 # building the functionalities 
@@ -33,13 +38,15 @@ def get_prediction(text) :
     review = [ps.stem(word) for word in review if not word in spacy_stopwords]
     review = ''.join(review)
     review_vector = vectorizer.transform([review]).toarray()
-    # if model.predict(review_vector)[0][0] > 0.7:
-    #     prediction = "Real News"
-    # elif 0.4 < model.predict(review_vector)[0][0] <= 0.7:
-    #     prediction = "Suspicious piece of news. Please check the credibility of the source"
-    # else:
-    #     prediction = "Fake News"
-    prediction = "Testing"
+    prediction_value = loaded_model.predict(review_vector)[0][0]
+    print(prediction_value)
+    if prediction_value > 0.7:
+        prediction = "Real News"
+    elif 0.4 < prediction_value <= 0.7:
+        prediction = "Suspicious piece of news. Please check the credibility of the source"
+    else:
+        prediction = "Fake News"
+    # prediction = "Testing"
     return prediction
 
 @app.route('/', methods=['POST'])
