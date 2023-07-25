@@ -20,7 +20,7 @@ function NewsGuardian() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('https://newsguardian.onrender.com/', {
+          const response = await axios.post('https://newsguardian.onrender.com/predict/', {
             text: text,
           });
         setResult(response.data.result);
