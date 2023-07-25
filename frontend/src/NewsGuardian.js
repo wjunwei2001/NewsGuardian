@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './NewsGuardian.css';
+import axios from 'axios';
 
 function NewsGuardian() {
     const [text, setText] = useState('')
@@ -7,6 +8,7 @@ function NewsGuardian() {
     
     const handleInputChange = (element) => { 
       setText(element.target.value);
+      console.log("Input changed:", element.target.value);
 
       if (element) {
       const target = element.target ? element.target : element; 
@@ -17,15 +19,14 @@ function NewsGuardian() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('/predict/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ text }),
-        });
-        const data = await response.json();
-        setResult(data.result);
+        try {
+          const response = await axios.post('https://newsguardian.onrender.com/', {
+            text: text,
+          });
+        setResult(response.data.result);
+        } catch (error) {
+          console.error('Error predicting:', error);
+        }
       };
 
     return (
