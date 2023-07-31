@@ -19,11 +19,12 @@ ps = PorterStemmer()
 
 # loading of the saved model and vectorizer using pickle
 # model = load_model('nn_model.keras')
-with open('model_json', 'r') as json_file:
-    loaded_model_json = json_file.read()
-loaded_model = model_from_json(loaded_model_json)
-loaded_model.load_weights("model.h5")
+# with open('model_json', 'r') as json_file:
+#     loaded_model_json = json_file.read()
+# loaded_model = model_from_json(loaded_model_json)
+# loaded_model.load_weights("model.h5")
 
+loaded_model = pickle.load(open('pac_model.pkl', 'rb'))
 vectorizer = pickle.load(open('vectorizer.pkl', 'rb'))
 
 # building the functionalities 
@@ -38,14 +39,15 @@ def get_prediction(text) :
     review = [ps.stem(word) for word in review if not word in spacy_stopwords]
     review = ''.join(review)
     review_vector = vectorizer.transform([review]).toarray()
-    prediction_value = loaded_model.predict(review_vector)[0][0]
-    print(prediction_value)
-    if prediction_value > 0.7:
-        prediction = "Real News"
-    elif 0.4 < prediction_value <= 0.7:
-        prediction = "Suspicious piece of news. Please check the credibility of the source"
-    else:
-        prediction = "Fake News"
+    # prediction_value = loaded_model.predict(review_vector)
+    # print(prediction_value)
+    # if prediction_value > 0.7:
+    #     prediction = "Real News"
+    # elif 0.4 < prediction_value <= 0.7:
+    #     prediction = "Suspicious piece of news. Please check the credibility of the source"
+    # else:
+    #     prediction = "Fake News"
+    prediction = 'FAKE' if loaded_model.predict(review_vector) == 0 else 'REAL'
     # prediction = "Testing"
     return prediction
 
